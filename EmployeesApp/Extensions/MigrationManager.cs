@@ -19,7 +19,7 @@ namespace EmployeesApp.Extensions
                     {
                         appContext.Database.Migrate();
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         //Log errors or do anything you think it's needed
                         throw;
