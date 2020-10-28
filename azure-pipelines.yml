@@ -41,6 +41,15 @@ steps:
     publishTestResults: true
     projects: '**/*.Tests.csproj'
 
-- publish: $(Build.SourcesDirectory)/build
-  artifact: testing-aspnetcore-mvc
-  displayName: Publish artifact testing-aspnetcore-mvc
+- task: DtNetCoreCLI@2
+  inputs:
+    command: publish
+    publishWebProjects: True
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: True
+
+# this code takes all the files in $(Build.ArtifactStagingDirectory) and uploads them as an artifact of your build.
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
+    artifactName: 'myWebsiteName'
