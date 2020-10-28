@@ -40,3 +40,7 @@ steps:
     arguments: '--no-build --configuration $(buildConfiguration)'
     publishTestResults: true
     projects: '**/*.Tests.csproj'
+
+- publish: $(Build.SourcesDirectory)/build
+  artifact: testing-aspnetcore-mvc
+  displayName: Publish artifact testing-aspnetcore-mvc
